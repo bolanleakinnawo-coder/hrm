@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HRM Aesthetic Haven</title>
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <nav>
+      <div class="logo">
+        <span class="logo-hrm">HRM</span>
+        <span class="logo-name">Aesthetic Haven</span>
+      </div>
+
+      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#packages">Packages</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="/rules">Rules and Policies</a></li>
+      </ul>
+
+      <div class="nav-extras">
+        <a class="btn-book" href="/booking">Book Now</a>
+        <a href="https://instagram.com/HRM_aesthetic_haven" target="_blank">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://tiktok.com/@HRM_aesthetic_haven1" target="_blank">
+          <i class="fab fa-tiktok"></i>
+        </a>
+      </div>
+    </nav>
+
+    <!--Rules-->
+    <section
+      class="studio-policies"
+      id="policies"
+      data-aos="fade-up"
+      data-aos-duration="1000"
+    >
+      <div class="container">
+        <h2>Studio Rules & Policies</h2>
+
+        <div class="policy-item">
+          <button class="policy-toggle">📅 Booking Policy</button>
+          <div class="policy-content">
+            <ul>
+              <li>
+                We operate strictly by bookings only — no walk-ins allowed.
+              </li>
+              <li>All prices are final and cannot be negotiated.</li>
+              <li>
+                Your booking is confirmed only after full payment has been made.
+              </li>
+              <li>
+                Payments cover space rental only and do not include photography
+                or editing fees.
+              </li>
+              <li>
+                Be clear and specific with the time you book; your reserved time
+                starts exactly as scheduled, not when you arrive.
+              </li>
+              <li>
+                The minimum booking time is 1 hour; we do not accept 30-minute
+                bookings.
+              </li>
+              <li>
+                We strongly recommend booking in advance to secure your
+                preferred time slot.
+              </li>
+              <li>
+                Please be on time for your booking. your time begins at the
+                exact hour you reserved.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="policy-item">
+          <button class="policy-toggle">⏰ Lateness & Arrival Policy</button>
+          <div class="policy-content">
+            <ul>
+              <li>
+                Clients must arrive at the exact time they booked and should not
+                bring extra guests not included in their payment.
+              </li>
+              <li>A 10-minute grace period is allowed for late arrival.</li>
+              <li>
+                After 10 minutes, the extra time is deducted from your session.
+              </li>
+              <li>
+                ₦5,000 lateness fee if you're up to 30 mins late (or time is
+                deducted).
+              </li>
+              <li>
+                Extension (₦10,000) is allowed if the session ends and you’re
+                already in the studio—subject to availability.
+              </li>
+              <li>
+                Failure to arrive or reschedule = forfeited session. No refunds.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="policy-item">
+          <button class="policy-toggle">🔄 Rescheduling Policy</button>
+          <div class="policy-content">
+            <ul>
+              <li>
+                1 free reschedule if done at least 3 days before the original
+                booking.
+              </li>
+              <li>₦5,000 fee if rescheduled less than 2 days before.</li>
+              <li>₦10,000 same-day change fee.</li>
+              <li>All reschedules depend on studio availability.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="policy-item">
+          <button class="policy-toggle">⚠ Damages Policy</button>
+          <div class="policy-content">
+            <ul>
+              <li>
+                Food, drinks, eating, and smoking are strictly not allowed in
+                the studio.
+              </li>
+              <li>
+                Makeup must be done before arriving; doing makeup inside the
+                studio is not permitted.
+              </li>
+              <li>
+                Please take all your personal items with you — we are not
+                responsible for lost or forgotten items.
+              </li>
+              <li>
+                Do not move chairs or studio equipment unless permitted by
+                management.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="policy-item">
+          <button class="policy-toggle">💸 Cancellation & Refund Policy</button>
+          <div class="policy-content">
+            <ul>
+              <li>Cancel more than 3 days before booking: 75% refund.</li>
+              <li>Cancel within 3 days: 50% refund.</li>
+              <li>Same-day cancellations or no-shows: no refund.</li>
+              <li>Refunds are processed within 3 workingdays.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="policy-item">
+          <button class="policy-toggle">⏳ Extension Policy</button>
+          <div class="policy-content">
+            <ul>
+              <li>Extensions depend on availability.</li>
+              <li>
+                If there's a booking right after, an extension won't be allowed.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="policy-item">
+          <button class="policy-toggle">
+            ❗ Why We Charge Rescheduling & Lateness Fees
+          </button>
+          <div class="policy-content">
+            <ul>
+              <li>Bookings are reserved exclusively once paid for.</li>
+              <li>No other clients are accepted for that slot.</li>
+              <li>Late arrivals or rescheduling cause financial loss.</li>
+              <li>Fees help us manage operations and avoid disruptions.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--Footer-->
+    <footer>
+      <div class="footer-container">
+        <div class="footer-logo">
+          <h2>
+            <span class="logo-hrm">HRM</span>
+            <span class="logo-name">Aesthetic Haven</span>
+          </h2>
+          <p>
+            A cosy space where your brand shines and your content stands out.
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#packages">Packages</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#booking">Book Now</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-contact">
+          <h4>Contact</h4>
+          <p>📞 09062327249 / 07015991635</p>
+          <p>
+            <i class="fab fa-instagram"></i>
+            <a href="https://instagram.com/HRM_aesthetic_haven" target="_blank"
+              >@HRM_aesthetic_haven</a
+            >
+          </p>
+          <p>
+            <i class="fab fa-tiktok"></i>
+            <a href="https://tiktok.com/@HRM_aesthetic_haven" target="_blank"
+              >@HRM_aesthetic_haven</a
+            >
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 HRM Aesthetic Haven. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="app.js"></script>
+    <!-- AOS Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+  </body>
+</html>
