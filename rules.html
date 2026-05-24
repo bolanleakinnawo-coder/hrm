@@ -3,255 +3,893 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HRM Aesthetic Haven</title>
-
-    <!-- Google Fonts -->
+    <title>Studio Rules & Policies — HRM Aesthetic Haven</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Montserrat&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
-
-    <!-- Font Awesome -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="styles.css" />
-    <!-- AOS CSS -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-  </head>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* ── PAGE HERO ── */
+      .rules-hero {
+        background: var(--black);
+        padding: 180px 48px 100px;
+        position: relative;
+        overflow: hidden;
+      }
+      .rules-hero::before {
+        content: "";
+        position: absolute;
+        top: -60px;
+        right: -60px;
+        width: 420px;
+        height: 420px;
+        border-radius: 50%;
+        border: 1px solid rgba(184, 134, 11, 0.08);
+      }
+      .rules-hero::after {
+        content: "";
+        position: absolute;
+        bottom: -100px;
+        right: 80px;
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        border: 1px solid rgba(184, 134, 11, 0.06);
+      }
+      .rules-hero-inner {
+        max-width: 1160px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: end;
+      }
+      .rules-hero h1 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(3rem, 5vw, 5rem);
+        font-weight: 300;
+        color: #fff;
+        line-height: 1.05;
+        margin-top: 16px;
+      }
+      .rules-hero h1 em {
+        font-style: italic;
+        color: var(--gold);
+      }
+      .rules-hero-right {
+        padding-bottom: 6px;
+      }
+      .rules-hero-right p {
+        font-size: 1rem;
+        color: rgba(255, 255, 255, 0.55);
+        font-weight: 300;
+        line-height: 1.9;
+        margin-bottom: 28px;
+      }
+      .rules-notice {
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+        padding: 20px 24px;
+        border: 1px solid rgba(184, 134, 11, 0.25);
+        border-radius: 8px;
+        background: rgba(184, 134, 11, 0.04);
+      }
+      .rules-notice i {
+        color: var(--gold);
+        font-size: 0.9rem;
+        margin-top: 2px;
+        flex-shrink: 0;
+      }
+      .rules-notice p {
+        font-size: 0.88rem;
+        color: rgba(255, 255, 255, 0.5);
+        font-weight: 300;
+        line-height: 1.7;
+        margin: 0;
+      }
 
+      /* ── POLICY SECTIONS ── */
+      .policies-wrap {
+        background: var(--white);
+        padding: 100px 48px;
+      }
+      .policies-inner {
+        max-width: 1160px;
+        margin: 0 auto;
+      }
+      .policy-block {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        gap: 0;
+        border-bottom: 1px solid var(--border-light);
+        padding: 64px 0;
+      }
+      .policy-block:first-child {
+        padding-top: 0;
+      }
+      .policy-block:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+      .policy-label {
+        padding-right: 48px;
+      }
+      .policy-label .policy-num {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 4rem;
+        font-weight: 300;
+        color: rgba(52, 41, 13, 0.18);
+        line-height: 1;
+        margin-bottom: 12px;
+        display: block;
+      }
+      .policy-label h3 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.5rem;
+        font-weight: 400;
+        color: var(--black);
+        line-height: 1.25;
+      }
+      .policy-label .gold-rule {
+        margin: 18px 0 0;
+        width: 32px;
+      }
+      .policy-rules {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+      .policy-rule-item {
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+        padding: 18px 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+      .policy-rule-item:first-child {
+        padding-top: 0;
+      }
+      .policy-rule-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+      .rule-dash {
+        width: 18px;
+        height: 1px;
+        background: var(--gold);
+        flex-shrink: 0;
+        margin-top: 11px;
+      }
+      .policy-rule-item p {
+        font-size: 0.95rem;
+        color: var(--text-body);
+        font-weight: 300;
+        line-height: 1.8;
+      }
+      .policy-rule-item p strong {
+        font-weight: 500;
+        color: var(--black);
+      }
+
+      /* ── FEE CALLOUT ── */
+      .fee-callout {
+        background: var(--black);
+        border-radius: 10px;
+        padding: 28px 32px;
+        margin-top: 24px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background: var(--black);
+        overflow: hidden;
+      }
+      .fee-item {
+        padding: 24px 28px;
+        background: var(--black-2);
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .fee-item:first-child {
+        border-radius: 10px 0 0 10px;
+      }
+      .fee-item:last-child {
+        border-radius: 0 10px 10px 0;
+      }
+      .fee-label {
+        font-size: 0.68rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.4);
+        font-weight: 400;
+      }
+      .fee-amount {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.5rem;
+        font-weight: 400;
+        color: var(--gold);
+      }
+      .fee-desc {
+        font-size: 0.82rem;
+        color: rgba(255, 255, 255, 0.45);
+        font-weight: 300;
+        line-height: 1.6;
+      }
+
+      /* ── REFUND TABLE ── */
+      .refund-grid {
+        margin-top: 8px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
+      .refund-card {
+        border: 1px solid var(--border-light);
+        border-radius: 10px;
+        padding: 20px 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .refund-card .refund-when {
+        font-size: 0.78rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        font-weight: 400;
+      }
+      .refund-card .refund-pct {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 2.2rem;
+        font-weight: 300;
+        color: var(--gold);
+        line-height: 1;
+      }
+      .refund-card .refund-note {
+        font-size: 0.82rem;
+        color: var(--text-muted);
+        font-weight: 300;
+        line-height: 1.6;
+      }
+
+      /* ── WHY WE CHARGE ── */
+      .why-block {
+        background: var(--black);
+        padding: 80px 48px;
+      }
+      .why-inner {
+        max-width: 1160px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+      }
+      .why-text p {
+        font-size: 0.95rem;
+        color: rgba(255, 255, 255, 0.6);
+        font-weight: 300;
+        line-height: 1.9;
+        margin-top: 20px;
+      }
+      .why-points {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+      }
+      .why-point {
+        background: var(--black-2);
+        padding: 22px 28px;
+        display: flex;
+        gap: 18px;
+        align-items: flex-start;
+        border-left: 2px solid transparent;
+        transition:
+          border-color 0.3s,
+          background 0.3s;
+        border-radius: 4px;
+      }
+      .why-point:hover {
+        border-left-color: var(--gold);
+        background: #161616;
+      }
+      .why-point i {
+        color: var(--gold);
+        font-size: 0.9rem;
+        margin-top: 2px;
+        flex-shrink: 0;
+      }
+      .why-point p {
+        font-size: 0.92rem;
+        color: rgba(255, 255, 255, 0.6);
+        font-weight: 300;
+        line-height: 1.7;
+      }
+
+      /* ── BOTTOM CTA ── */
+      .rules-cta-bottom {
+        background: var(--gold);
+        padding: 80px 48px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 40px;
+        align-items: center;
+      }
+      .rules-cta-bottom h2 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(2rem, 3.5vw, 3rem);
+        font-weight: 300;
+        color: var(--black);
+        line-height: 1.1;
+      }
+      .rules-cta-bottom p {
+        font-size: 0.95rem;
+        color: rgba(0, 0, 0, 0.55);
+        font-weight: 300;
+        margin-top: 10px;
+        line-height: 1.7;
+      }
+      .rules-cta-bottom .cta-actions {
+        display: flex;
+        gap: 14px;
+        flex-shrink: 0;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 960px) {
+        .rules-hero {
+          padding: 140px 20px 64px;
+        }
+        .rules-hero-inner {
+          grid-template-columns: 1fr;
+          gap: 36px;
+        }
+        .policies-wrap {
+          padding: 64px 20px;
+        }
+        .policy-block {
+          grid-template-columns: 1fr;
+          gap: 32px;
+          padding: 48px 0;
+        }
+        .policy-label {
+          padding-right: 0;
+        }
+        .policy-label .policy-num {
+          font-size: 2.8rem;
+        }
+        .fee-callout {
+          grid-template-columns: 1fr;
+        }
+        .fee-item:first-child {
+          border-radius: 10px 10px 0 0;
+        }
+        .fee-item:last-child {
+          border-radius: 0 0 10px 10px;
+        }
+        .refund-grid {
+          grid-template-columns: 1fr;
+        }
+        .why-block {
+          padding: 64px 20px;
+        }
+        .why-inner {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .rules-cta-bottom {
+          grid-template-columns: 1fr;
+          padding: 56px 20px;
+        }
+        .rules-cta-bottom .cta-actions {
+          justify-content: flex-start;
+        }
+      }
+    </style>
+  </head>
   <body>
-    <nav>
+    <!-- NAV -->
+    <nav id="nav">
       <div class="logo">
         <span class="logo-hrm">HRM</span>
         <span class="logo-name">Aesthetic Haven</span>
       </div>
-
-      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-
       <ul class="nav-links" id="navLinks">
         <li><a href="/">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#packages">Packages</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="/rules">Rules and Policies</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#packages">Packages</a></li>
+        <li><a href="/#contact">Contact</a></li>
+        <li><a href="/rules">Policies</a></li>
+        <li class="mobile-only-book" style="margin-top: 8px">
+          <a
+            href="/booking"
+            style="
+              background: var(--gold);
+              color: #000;
+              padding: 10px 24px;
+              letter-spacing: 2px;
+            "
+            >Book Now</a
+          >
+        </li>
       </ul>
-
       <div class="nav-extras">
         <a class="btn-book" href="/booking">Book Now</a>
-        <a href="https://instagram.com/HRM_aesthetic_haven" target="_blank">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://tiktok.com/@HRM_aesthetic_haven1" target="_blank">
-          <i class="fab fa-tiktok"></i>
-        </a>
+        <a
+          href="https://instagram.com/HRM_aesthetic_haven"
+          target="_blank"
+          aria-label="Instagram"
+          ><i class="fab fa-instagram"></i
+        ></a>
+        <a
+          href="https://tiktok.com/@HRM_aesthetic_haven1"
+          target="_blank"
+          aria-label="TikTok"
+          ><i class="fab fa-tiktok"></i
+        ></a>
+        <button class="menu-toggle" onclick="toggleNav()" aria-label="Menu">
+          ☰
+        </button>
       </div>
     </nav>
 
-    <!--Rules-->
-    <section
-      class="studio-policies"
-      id="policies"
-      data-aos="fade-up"
-      data-aos-duration="1000"
-    >
-      <div class="container">
-        <h2>Studio Rules & Policies</h2>
+    <!-- PAGE HERO -->
+    <div class="rules-hero">
+      <div class="rules-hero-inner">
+        <div class="rules-hero-left reveal">
+          <h1>Studio Rules <br /><em>&amp; Policies</em></h1>
+        </div>
+        <div class="rules-hero-right reveal">
+          <p>
+            Please read through our policies carefully before making a booking.
+            They exist to ensure every client has a smooth, fair, and enjoyable
+            experience at HRM Aesthetic Haven.
+          </p>
+          <div class="rules-notice">
+            <i class="fas fa-circle-info"></i>
+            <p>
+              By completing your booking and payment, you confirm that you have
+              read and agreed to all studio rules and policies listed on this
+              page.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-        <div class="policy-item">
-          <button class="policy-toggle">📅 Booking Policy</button>
-          <div class="policy-content">
-            <ul>
-              <li>
-                We operate strictly by bookings only — no walk-ins allowed.
-              </li>
-              <li>All prices are final and cannot be negotiated.</li>
-              <li>
-                Your booking is confirmed only after full payment has been made.
-              </li>
-              <li>
-                Payments cover space rental only and do not include photography
-                or editing fees.
-              </li>
-              <li>
-                Be clear and specific with the time you book; your reserved time
-                starts exactly as scheduled, not when you arrive.
-              </li>
-              <li>
-                The minimum booking time is 1 hour; we do not accept 30-minute
-                bookings.
-              </li>
-              <li>
+    <!-- POLICIES -->
+    <div class="policies-wrap">
+      <div class="policies-inner">
+        <!-- 01 Booking -->
+        <div class="policy-block reveal">
+          <div class="policy-label">
+            <span class="policy-num">01</span>
+            <h3>Booking Policy</h3>
+          </div>
+          <div class="policy-rules">
+            <div class="policy-rule-item">
+              <div class="rule-dash"></div>
+              <p>
+                We operate <strong>strictly by appointment</strong> — no
+                walk-ins are accepted under any circumstance.
+              </p>
+            </div>
+            <div class="policy-rule-item">
+              <div class="rule-dash"></div>
+              <p>All prices are final and <strong>non-negotiable</strong>.</p>
+            </div>
+            <div class="policy-rule-item">
+              <div class="rule-dash"></div>
+              <p>
+                Your booking is only confirmed after
+                <strong>full payment</strong> has been received.
+              </p>
+            </div>
+            <div class="policy-rule-item">
+              <div class="rule-dash"></div>
+              <p>
+                Payments cover space rental only and
+                <strong>do not include</strong> photography or editing fees.
+              </p>
+            </div>
+            <div class="policy-rule-item">
+              <div class="rule-dash"></div>
+              <p>
+                Be specific with the time you book — your session starts exactly
+                as scheduled, not when you arrive.
+              </p>
+            </div>
+            <div class="policy-rule-item">
+              <div class="rule-dash"></div>
+              <p>
+                The <strong>minimum booking duration is 1 hour</strong>. We do
+                not accept 30-minute bookings.
+              </p>
+            </div>
+            <div class="policy-rule-item">
+              <div class="rule-dash"></div>
+              <p>
                 We strongly recommend booking in advance to secure your
                 preferred time slot.
-              </li>
-              <li>
-                Please be on time for your booking. your time begins at the
-                exact hour you reserved.
-              </li>
-            </ul>
+              </p>
+            </div>
           </div>
         </div>
 
-        <div class="policy-item">
-          <button class="policy-toggle">⏰ Lateness & Arrival Policy</button>
-          <div class="policy-content">
-            <ul>
-              <li>
-                Clients must arrive at the exact time they booked and should not
-                bring extra guests not included in their payment.
-              </li>
-              <li>A 10-minute grace period is allowed for late arrival.</li>
-              <li>
-                After 10 minutes, the extra time is deducted from your session.
-              </li>
-              <li>
-                ₦5,000 lateness fee if you're up to 30 mins late (or time is
-                deducted).
-              </li>
-              <li>
-                Extension (₦10,000) is allowed if the session ends and you’re
-                already in the studio—subject to availability.
-              </li>
-              <li>
-                Failure to arrive or reschedule = forfeited session. No refunds.
-              </li>
-            </ul>
+        <!-- 02 Lateness -->
+        <div class="policy-block reveal">
+          <div class="policy-label">
+            <span class="policy-num">02</span>
+            <h3>Lateness &amp; Arrival</h3>
+          </div>
+          <div class="policy-rules">
+            <div class="policy-rule-item">
+              <div class="rule-dash"></div>
+              <p>
+                Arrive at the exact time you booked. Do not bring guests who
+                have not been included in your payment.
+              </p>
+            </div>
+            <div class="policy-rule-item">
+              <div class="rule-dash"></div>
+              <p>
+                A <strong>10-minute grace period</strong> is allowed. After
+                that, the time is deducted from your session.
+              </p>
+            </div>
+            <div class="policy-rule-item">
+              <div class="rule-dash"></div>
+              <p>
+                Failure to arrive or reschedule results in a
+                <strong>forfeited session with no refund</strong>.
+              </p>
+            </div>
+
+            <div class="fee-callout">
+              <div class="fee-item">
+                <span class="fee-label">After 10 min late</span>
+                <span class="fee-amount">Time lost</span>
+                <span class="fee-desc"
+                  >Deducted from your session, no extension given</span
+                >
+              </div>
+              <div class="fee-item">
+                <span class="fee-label">30 min late</span>
+                <span class="fee-amount">₦5,000</span>
+                <span class="fee-desc"
+                  >Lateness fee charged or time deducted</span
+                >
+              </div>
+              <div class="fee-item">
+                <span class="fee-label">Mid-session extension</span>
+                <span class="fee-amount">₦10,000</span>
+                <span class="fee-desc"
+                  >Subject to studio availability only</span
+                >
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="policy-item">
-          <button class="policy-toggle">🔄 Rescheduling Policy</button>
-          <div class="policy-content">
-            <ul>
-              <li>
-                1 free reschedule if done at least 3 days before the original
-                booking.
-              </li>
-              <li>₦5,000 fee if rescheduled less than 2 days before.</li>
-              <li>₦10,000 same-day change fee.</li>
-              <li>All reschedules depend on studio availability.</li>
-            </ul>
+        <!-- 03 Rescheduling -->
+        <div class="policy-block reveal">
+          <div class="policy-label">
+            <span class="policy-num">03</span>
+            <h3>Rescheduling Policy</h3>
+          </div>
+          <div class="policy-rules">
+            <div class="policy-rule-item">
+              <div class="rule-dash"></div>
+              <p>
+                <strong>1 free reschedule</strong> is allowed if requested at
+                least 3 days before your original booking.
+              </p>
+            </div>
+            <div class="policy-rule-item">
+              <div class="rule-dash"></div>
+              <p>
+                Rescheduling less than 2 days before your session incurs a
+                <strong>₦5,000 fee</strong>.
+              </p>
+            </div>
+            <div class="policy-rule-item">
+              <div class="rule-dash"></div>
+              <p>Same-day changes incur a <strong>₦10,000 fee</strong>.</p>
+            </div>
+            <div class="policy-rule-item">
+              <div class="rule-dash"></div>
+              <p>
+                All reschedules are subject to studio availability and are not
+                guaranteed.
+              </p>
+            </div>
           </div>
         </div>
 
-        <div class="policy-item">
-          <button class="policy-toggle">⚠ Damages Policy</button>
-          <div class="policy-content">
-            <ul>
-              <li>
-                Food, drinks, eating, and smoking are strictly not allowed in
-                the studio.
-              </li>
-              <li>
-                Makeup must be done before arriving; doing makeup inside the
-                studio is not permitted.
-              </li>
-              <li>
-                Please take all your personal items with you — we are not
-                responsible for lost or forgotten items.
-              </li>
-              <li>
-                Do not move chairs or studio equipment unless permitted by
+        <!-- 04 Damages -->
+        <div class="policy-block reveal">
+          <div class="policy-label">
+            <span class="policy-num">04</span>
+            <h3>Studio Conduct &amp; Damages</h3>
+          </div>
+          <div class="policy-rules">
+            <div class="policy-rule-item">
+              <div class="rule-dash"></div>
+              <p>
+                <strong>Food, drinks, eating, and smoking</strong> are strictly
+                prohibited inside the studio at all times.
+              </p>
+            </div>
+            <div class="policy-rule-item">
+              <div class="rule-dash"></div>
+              <p>
+                Makeup must be completed <strong>before arriving</strong>. Doing
+                makeup inside the studio is not permitted.
+              </p>
+            </div>
+            <div class="policy-rule-item">
+              <div class="rule-dash"></div>
+              <p>
+                Please take all personal belongings when you leave. We are
+                <strong>not responsible</strong> for lost or forgotten items.
+              </p>
+            </div>
+            <div class="policy-rule-item">
+              <div class="rule-dash"></div>
+              <p>
+                Do not move chairs or studio equipment without permission from
                 management.
-              </li>
-            </ul>
+              </p>
+            </div>
+            <div class="policy-rule-item">
+              <div class="rule-dash"></div>
+              <p>
+                Any damage caused to the studio, props, or equipment during your
+                session will be <strong>charged to the client</strong>.
+              </p>
+            </div>
           </div>
         </div>
 
-        <div class="policy-item">
-          <button class="policy-toggle">💸 Cancellation & Refund Policy</button>
-          <div class="policy-content">
-            <ul>
-              <li>Cancel more than 3 days before booking: 75% refund.</li>
-              <li>Cancel within 3 days: 50% refund.</li>
-              <li>Same-day cancellations or no-shows: no refund.</li>
-              <li>Refunds are processed within 3 workingdays.</li>
-            </ul>
+        <!-- 05 Cancellation & Refunds -->
+        <div class="policy-block reveal">
+          <div class="policy-label">
+            <span class="policy-num">05</span>
+            <h3>Cancellation &amp; Refunds</h3>
+          </div>
+          <div class="policy-rules">
+            <div class="policy-rule-item">
+              <div class="rule-dash"></div>
+              <p>
+                Refunds are processed within <strong>3 working days</strong> of
+                a valid cancellation request.
+              </p>
+            </div>
+            <div class="policy-rule-item">
+              <div class="rule-dash"></div>
+              <p>
+                Same-day cancellations and no-shows receive
+                <strong>no refund</strong>.
+              </p>
+            </div>
+
+            <div class="refund-grid">
+              <div class="refund-card">
+                <span class="refund-when">More than 3 days before</span>
+                <span class="refund-pct">75%</span>
+                <span class="refund-note"
+                  >Refund issued within 3 working days</span
+                >
+              </div>
+              <div class="refund-card">
+                <span class="refund-when">Within 3 days</span>
+                <span class="refund-pct">50%</span>
+                <span class="refund-note"
+                  >Partial refund processed within 3 working days</span
+                >
+              </div>
+              <div class="refund-card">
+                <span class="refund-when">Same-day or no-show</span>
+                <span class="refund-pct">0%</span>
+                <span class="refund-note"
+                  >No refund issued for same-day cancellations</span
+                >
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="policy-item">
-          <button class="policy-toggle">⏳ Extension Policy</button>
-          <div class="policy-content">
-            <ul>
-              <li>Extensions depend on availability.</li>
-              <li>
-                If there's a booking right after, an extension won't be allowed.
-              </li>
-            </ul>
+        <!-- 06 Extensions -->
+        <div class="policy-block reveal">
+          <div class="policy-label">
+            <span class="policy-num">06</span>
+            <h3>Extension Policy</h3>
           </div>
-        </div>
-
-        <div class="policy-item">
-          <button class="policy-toggle">
-            ❗ Why We Charge Rescheduling & Lateness Fees
-          </button>
-          <div class="policy-content">
-            <ul>
-              <li>Bookings are reserved exclusively once paid for.</li>
-              <li>No other clients are accepted for that slot.</li>
-              <li>Late arrivals or rescheduling cause financial loss.</li>
-              <li>Fees help us manage operations and avoid disruptions.</li>
-            </ul>
+          <div class="policy-rules">
+            <div class="policy-rule-item">
+              <div class="rule-dash"></div>
+              <p>
+                Extensions are only available
+                <strong>subject to studio availability</strong> at the time of
+                your session.
+              </p>
+            </div>
+            <div class="policy-rule-item">
+              <div class="rule-dash"></div>
+              <p>
+                If another booking is scheduled immediately after your session,
+                an extension <strong>will not be permitted</strong>.
+              </p>
+            </div>
+            <div class="policy-rule-item">
+              <div class="rule-dash"></div>
+              <p>
+                Extension requests must be made before the end of your session
+                and approved by management.
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
 
-    <!--Footer-->
-    <footer>
-      <div class="footer-container">
-        <div class="footer-logo">
-          <h2>
-            <span class="logo-hrm">HRM</span>
-            <span class="logo-name">Aesthetic Haven</span>
-          </h2>
+    <!-- WHY WE CHARGE -->
+    <div class="why-block">
+      <div class="why-inner">
+        <div class="why-text reveal">
+          <span class="eyebrow">Transparency</span>
+          <h2 class="h2-white">Why We Have <em>These Fees</em></h2>
           <p>
-            A cosy space where your brand shines and your content stands out.
+            We understand fees can feel frustrating, but they are essential to
+            keeping the studio running fairly for every client. Here is why they
+            exist.
           </p>
         </div>
+        <div class="why-points reveal">
+          <div class="why-point">
+            <i class="fas fa-lock"></i>
+            <p>
+              Once a booking is paid for, that time slot is locked — no other
+              client can book it, regardless of demand.
+            </p>
+          </div>
+          <div class="why-point">
+            <i class="fas fa-clock"></i>
+            <p>
+              Late arrivals and last-minute rescheduling cause direct financial
+              loss that cannot be recovered.
+            </p>
+          </div>
+          <div class="why-point">
+            <i class="fas fa-shield-halved"></i>
+            <p>
+              Fees ensure every client is treated equally and the studio
+              operates without disruption.
+            </p>
+          </div>
+          <div class="why-point">
+            <i class="fas fa-handshake"></i>
+            <p>
+              We always aim to be reasonable. If you have an emergency, reach
+              out — we handle situations on a case-by-case basis.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-        <div class="footer-links">
-          <h4>Quick Links</h4>
+    <!-- CTA -->
+    <div class="rules-cta-bottom">
+      <div>
+        <h2>Ready to Book Your Session?</h2>
+        <p>
+          You have read and understood our policies. Let us get your session on
+          the calendar.
+        </p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn-solid-dark" href="/booking">Book Now</a>
+        <a class="btn-ghost-light" href="/#contact">Contact Us</a>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <div class="logo">
+            <span class="logo-hrm">HRM</span>
+            <span class="logo-name" style="color: rgba(255, 255, 255, 0.5)"
+              >Aesthetic Haven</span
+            >
+          </div>
+          <p class="footer-desc">
+            A cosy space where your brand shines and your content stands out.
+            Ilorin, Nigeria.
+          </p>
+        </div>
+        <div class="fc">
+          <h4>Navigate</h4>
           <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#packages">Packages</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#booking">Book Now</a></li>
+            <li><a href="/#about">About</a></li>
+            <li><a href="/#packages">Packages</a></li>
+            <li><a href="/booking">Book Now</a></li>
+            <li><a href="/rules">Policies</a></li>
           </ul>
         </div>
-
-        <div class="footer-contact">
+        <div class="fc">
           <h4>Contact</h4>
-          <p>📞 09062327249 / 07015991635</p>
-          <p>
-            <i class="fab fa-instagram"></i>
+          <p>📞 09062327249</p>
+          <p>📞 07015991635</p>
+          <p style="margin-top: 8px">
             <a href="https://instagram.com/HRM_aesthetic_haven" target="_blank"
-              >@HRM_aesthetic_haven</a
+              >Instagram</a
             >
           </p>
           <p>
-            <i class="fab fa-tiktok"></i>
-            <a href="https://tiktok.com/@HRM_aesthetic_haven" target="_blank"
-              >@HRM_aesthetic_haven</a
+            <a href="https://tiktok.com/@HRM_aesthetic_haven1" target="_blank"
+              >TikTok</a
             >
+          </p>
+          <p>
+            <a href="https://wa.me/2349062327249" target="_blank">WhatsApp</a>
           </p>
         </div>
       </div>
-
-      <div class="footer-bottom">
+      <div class="footer-bot">
         <p>&copy; 2025 HRM Aesthetic Haven. All rights reserved.</p>
+        <p class="gold">Ilorin · Nigeria</p>
       </div>
     </footer>
 
-    <script src="app.js"></script>
-    <!-- AOS Script -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-      AOS.init();
+      (function () {
+        var mobileBook = document.querySelector(".mobile-only-book");
+        function checkWidth() {
+          mobileBook.style.display = window.innerWidth > 960 ? "none" : "";
+        }
+        checkWidth();
+        window.addEventListener("resize", checkWidth);
+      })();
+
+      var nav = document.getElementById("nav");
+      window.addEventListener("scroll", function () {
+        nav.classList.toggle("scrolled", window.scrollY > 60);
+      });
+
+      function toggleNav() {
+        document.getElementById("navLinks").classList.toggle("open");
+      }
+      document.querySelectorAll("#navLinks a").forEach(function (a) {
+        a.addEventListener("click", function () {
+          document.getElementById("navLinks").classList.remove("open");
+        });
+      });
+
+      var reveals = document.querySelectorAll(".reveal");
+      var obs = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) e.target.classList.add("visible");
+          });
+        },
+        { threshold: 0.08 },
+      );
+      reveals.forEach(function (el) {
+        obs.observe(el);
+      });
     </script>
   </body>
 </html>

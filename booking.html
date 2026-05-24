@@ -1,0 +1,1090 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book a Session — HRM Aesthetic Haven</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* ── HERO ── */
+      .booking-hero {
+        background: var(--black);
+        padding: 160px 48px 80px;
+        text-align: center;
+      }
+      .booking-hero h1 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(2.8rem, 5vw, 4.5rem);
+        font-weight: 300;
+        color: #fff;
+        line-height: 1.1;
+        margin-top: 12px;
+      }
+      .booking-hero h1 em {
+        font-style: italic;
+        color: var(--gold);
+      }
+      .booking-hero p {
+        font-size: 0.95rem;
+        color: rgba(255, 255, 255, 0.5);
+        font-weight: 300;
+        margin-top: 16px;
+        line-height: 1.8;
+      }
+
+      /* ── STEPS INDICATOR ── */
+      .steps-bar {
+        background: #fff;
+        border-bottom: 1px solid var(--border-light);
+        padding: 0 48px;
+      }
+      .steps-bar-inner {
+        max-width: 860px;
+        margin: 0 auto;
+        display: flex;
+        align-items: stretch;
+      }
+      .step-tab {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 22px 0;
+        border-bottom: 2px solid transparent;
+        opacity: 0.35;
+        transition: all 0.3s;
+      }
+      .step-tab.active {
+        opacity: 1;
+        border-bottom-color: var(--gold);
+      }
+      .step-tab.done {
+        opacity: 0.6;
+      }
+      .step-num {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: 1px solid var(--border-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.72rem;
+        font-weight: 500;
+        color: var(--text-muted);
+        flex-shrink: 0;
+        transition: all 0.3s;
+      }
+      .step-tab.active .step-num {
+        background: var(--gold);
+        border-color: var(--gold);
+        color: var(--black);
+      }
+      .step-tab.done .step-num {
+        background: var(--black);
+        border-color: var(--black);
+        color: #fff;
+      }
+      .step-info {
+        display: flex;
+        flex-direction: column;
+      }
+      .step-label {
+        font-size: 0.65rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        font-weight: 500;
+      }
+      .step-title {
+        font-size: 0.9rem;
+        font-weight: 400;
+        color: var(--black);
+        margin-top: 2px;
+      }
+      .step-divider {
+        width: 1px;
+        background: var(--border-light);
+        margin: 16px 24px;
+      }
+
+      /* ── LAYOUT ── */
+      .booking-wrap {
+        background: var(--white);
+        padding: 64px 48px 100px;
+      }
+      .booking-inner {
+        max-width: 860px;
+        margin: 0 auto;
+      }
+
+      /* ── PANELS ── */
+      .step-panel {
+        display: none;
+      }
+      .step-panel.active {
+        display: block;
+      }
+
+      /* ── FORM STYLES ── */
+      .panel-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 2rem;
+        font-weight: 400;
+        color: var(--black);
+        margin-bottom: 6px;
+      }
+      .panel-sub {
+        font-size: 0.88rem;
+        color: var(--text-muted);
+        font-weight: 300;
+        margin-bottom: 32px;
+        line-height: 1.7;
+      }
+      .gold-rule {
+        width: 36px;
+        height: 1px;
+        background: var(--gold);
+        margin: 14px 0 28px;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-bottom: 18px;
+      }
+      .form-group label {
+        font-size: 0.7rem;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        font-weight: 500;
+      }
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        background: #fafaf8;
+        border: 1px solid var(--border-light);
+        color: var(--black);
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.95rem;
+        font-weight: 300;
+        padding: 13px 16px;
+        outline: none;
+        border-radius: 8px;
+        transition: border-color 0.3s;
+        width: 100%;
+        appearance: none;
+      }
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        border-color: var(--gold);
+      }
+      .form-group textarea {
+        height: 90px;
+        resize: none;
+      }
+
+      /* ── PRICE BAR ── */
+      .price-bar {
+        background: var(--black);
+        border-radius: 10px;
+        padding: 20px 28px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 28px 0;
+      }
+      .price-bar span {
+        font-size: 0.72rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.45);
+      }
+      .price-bar strong {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 2rem;
+        font-weight: 300;
+        color: var(--gold);
+      }
+
+      /* ── POLICY CHECK ── */
+      .policy-check {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        padding: 16px 20px;
+        background: #fafaf8;
+        border: 1px solid var(--border-light);
+        border-radius: 8px;
+        margin-bottom: 24px;
+      }
+      .policy-check input[type="checkbox"] {
+        width: 15px;
+        height: 15px;
+        margin-top: 3px;
+        flex-shrink: 0;
+        accent-color: var(--gold);
+      }
+      .policy-check label {
+        font-size: 0.88rem;
+        color: var(--text-muted);
+        font-weight: 300;
+        line-height: 1.7;
+      }
+      .policy-check a {
+        color: var(--gold);
+      }
+
+      /* ── BUTTONS ── */
+      .btn-next {
+        background: var(--gold);
+        color: var(--black);
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.78rem;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        font-weight: 500;
+        padding: 15px 36px;
+        border: none;
+        cursor: pointer;
+        border-radius: 6px;
+        transition: all 0.3s;
+      }
+      .btn-next:hover {
+        background: var(--gold-light);
+        transform: translateY(-1px);
+      }
+      .btn-next:disabled {
+        opacity: 0.35;
+        cursor: not-allowed;
+        transform: none;
+      }
+      .btn-back {
+        background: transparent;
+        color: var(--text-muted);
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.78rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        font-weight: 400;
+        padding: 15px 24px;
+        border: 1px solid var(--border-light);
+        cursor: pointer;
+        border-radius: 6px;
+        transition: all 0.3s;
+        margin-right: 12px;
+      }
+      .btn-back:hover {
+        border-color: var(--black);
+        color: var(--black);
+      }
+      .btn-actions {
+        display: flex;
+        align-items: center;
+        margin-top: 8px;
+      }
+
+      /* ── STEP 2: BANK DETAILS ── */
+      .bank-block {
+        background: var(--black);
+        border-radius: 14px;
+        overflow: hidden;
+        margin-bottom: 28px;
+      }
+      .bank-block-head {
+        padding: 24px 32px;
+        border-bottom: 1px solid rgba(184, 134, 11, 0.15);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .bank-block-head i {
+        color: var(--gold);
+      }
+      .bank-block-head span {
+        font-size: 0.7rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.5);
+        font-weight: 400;
+      }
+      .bank-block-body {
+        padding: 28px 32px;
+      }
+      .bank-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        padding: 14px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .bank-row:last-child {
+        border-bottom: none;
+      }
+      .bank-row-label {
+        font-size: 0.72rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.35);
+        font-weight: 400;
+      }
+      .bank-row-val {
+        font-size: 0.95rem;
+        color: rgba(255, 255, 255, 0.85);
+        font-weight: 300;
+        text-align: right;
+      }
+      .bank-row-val.acct-num {
+        font-family: "IBM Plex Serif", serif;
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: var(--gold);
+        letter-spacing: 1px;
+      }
+      .bank-row-val.total-due {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.8rem;
+        font-weight: 300;
+        color: var(--gold);
+      }
+
+      .bank-notice {
+        background: rgba(184, 134, 11, 0.07);
+        border: 1px solid rgba(184, 134, 11, 0.18);
+        border-radius: 8px;
+        padding: 16px 20px;
+        margin-bottom: 28px;
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+      }
+      .bank-notice i {
+        color: var(--gold);
+        font-size: 0.85rem;
+        margin-top: 2px;
+        flex-shrink: 0;
+      }
+      .bank-notice p {
+        font-size: 0.88rem;
+        color: var(--text-muted);
+        font-weight: 300;
+        line-height: 1.7;
+      }
+
+      .btn-paid {
+        width: 100%;
+        background: var(--gold);
+        color: var(--black);
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.78rem;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        font-weight: 500;
+        padding: 16px;
+        border: none;
+        cursor: pointer;
+        border-radius: 8px;
+        transition: all 0.3s;
+      }
+      .btn-paid:hover {
+        background: var(--gold-light);
+        transform: translateY(-1px);
+      }
+
+      /* ── STEP 3: CONFIRMED ── */
+      .confirmed-block {
+        text-align: center;
+        padding: 40px 0;
+      }
+      .confirmed-icon {
+        width: 72px;
+        height: 72px;
+        background: var(--gold);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 28px;
+      }
+      .confirmed-icon i {
+        color: var(--black);
+        font-size: 1.5rem;
+      }
+      .confirmed-block h2 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 2.4rem;
+        font-weight: 300;
+        color: var(--black);
+        margin-bottom: 10px;
+      }
+      .confirmed-block .conf-sub {
+        font-size: 0.95rem;
+        color: var(--text-muted);
+        font-weight: 300;
+        line-height: 1.8;
+        max-width: 460px;
+        margin: 0 auto 40px;
+      }
+
+      .address-card {
+        background: var(--black);
+        border-radius: 14px;
+        padding: 36px;
+        max-width: 480px;
+        margin: 0 auto 32px;
+        text-align: left;
+      }
+      .address-card .eyebrow {
+        margin-bottom: 10px;
+      }
+      .address-card h3 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.4rem;
+        font-weight: 400;
+        color: #fff;
+        line-height: 1.4;
+        margin-bottom: 8px;
+      }
+      .address-card p {
+        font-size: 0.88rem;
+        color: rgba(255, 255, 255, 0.45);
+        font-weight: 300;
+        line-height: 1.7;
+        margin-top: 10px;
+      }
+
+      .summary-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        max-width: 480px;
+        margin: 0 auto 32px;
+        text-align: left;
+      }
+      .summary-item {
+        background: #fafaf8;
+        border: 1px solid var(--border-light);
+        border-radius: 8px;
+        padding: 14px 16px;
+      }
+      .summary-item .s-label {
+        font-size: 0.65rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        font-weight: 500;
+        margin-bottom: 4px;
+      }
+      .summary-item .s-val {
+        font-size: 0.92rem;
+        color: var(--black);
+        font-weight: 400;
+      }
+
+      @media (max-width: 768px) {
+        .booking-hero {
+          padding: 130px 20px 56px;
+        }
+        .steps-bar {
+          padding: 0 20px;
+        }
+        .step-divider {
+          margin: 16px 12px;
+        }
+        .step-info .step-title {
+          display: none;
+        }
+        .booking-wrap {
+          padding: 48px 20px 80px;
+        }
+        .form-row {
+          grid-template-columns: 1fr;
+          gap: 0;
+        }
+        .bank-block-body {
+          padding: 20px;
+        }
+        .summary-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav id="nav">
+      <div class="logo">
+        <span class="logo-hrm">HRM</span>
+        <span class="logo-name">Aesthetic Haven</span>
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/">Home</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#packages">Packages</a></li>
+        <li><a href="/#contact">Contact</a></li>
+        <li><a href="rules.html">Policies</a></li>
+        <li class="mobile-only-book" style="margin-top: 8px">
+          <a
+            href="booking.html"
+            style="
+              background: var(--gold);
+              color: #000;
+              padding: 10px 24px;
+              letter-spacing: 2px;
+            "
+            >Book Now</a
+          >
+        </li>
+      </ul>
+      <div class="nav-extras">
+        <a class="btn-book" href="booking.html">Book Now</a>
+        <a
+          href="https://instagram.com/HRM_aesthetic_haven"
+          target="_blank"
+          aria-label="Instagram"
+          ><i class="fab fa-instagram"></i
+        ></a>
+        <a
+          href="https://tiktok.com/@HRM_aesthetic_haven1"
+          target="_blank"
+          aria-label="TikTok"
+          ><i class="fab fa-tiktok"></i
+        ></a>
+        <button class="menu-toggle" onclick="toggleNav()" aria-label="Menu">
+          ☰
+        </button>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="booking-hero">
+      <span class="eyebrow">Reserve Your Slot</span>
+      <h1>Book a <em>Session</em></h1>
+      <p>Three simple steps to secure your studio time.</p>
+    </div>
+
+    <!-- STEPS BAR -->
+    <div class="steps-bar">
+      <div class="steps-bar-inner">
+        <div class="step-tab active" id="tab-1">
+          <div class="step-num">1</div>
+          <div class="step-info">
+            <span class="step-label">Step 1</span>
+            <span class="step-title">Your Details</span>
+          </div>
+        </div>
+        <div class="step-divider"></div>
+        <div class="step-tab" id="tab-2">
+          <div class="step-num">2</div>
+          <div class="step-info">
+            <span class="step-label">Step 2</span>
+            <span class="step-title">Make Payment</span>
+          </div>
+        </div>
+        <div class="step-divider"></div>
+        <div class="step-tab" id="tab-3">
+          <div class="step-num">3</div>
+          <div class="step-info">
+            <span class="step-label">Step 3</span>
+            <span class="step-title">Confirmed</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="booking-wrap">
+      <div class="booking-inner">
+        <!-- STEP 1: FORM -->
+        <div class="step-panel active" id="panel-1">
+          <p class="panel-title">Your Details</p>
+          <div class="gold-rule"></div>
+          <p class="panel-sub">
+            Fill in your session details below. You'll see the exact amount to
+            pay before proceeding.
+          </p>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Full Name</label>
+              <input type="text" id="f-name" placeholder="Your full name" />
+            </div>
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input type="tel" id="f-phone" placeholder="08012345678" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Email Address (optional)</label>
+            <input type="email" id="f-email" placeholder="you@email.com" />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Preferred Date</label>
+              <input type="date" id="f-date" />
+            </div>
+            <div class="form-group">
+              <label>Preferred Time</label>
+              <input type="time" id="f-time" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Studio Series</label>
+            <select id="f-type" onchange="onTypeChange()">
+              <option value="">Select a series</option>
+              <option value="homely">The Homely Series</option>
+              <option value="pro">The Pro Series</option>
+              <option value="event">Event / Celebration</option>
+            </select>
+          </div>
+
+          <div class="form-group" id="duration-group" style="display: none">
+            <label>Session Duration</label>
+            <select id="f-duration" onchange="calcPrice()">
+              <option value="">Select duration</option>
+              <option value="1">1 hour</option>
+              <option value="2">2 hours</option>
+              <option value="3">3 hours</option>
+            </select>
+          </div>
+
+          <div class="form-group" id="guests-group" style="display: none">
+            <label>Guest Count</label>
+            <select id="f-guests" onchange="calcPrice()">
+              <option value="">Select guests</option>
+              <option value="10" data-price="100000">
+                Up to 10 guests — ₦100,000
+              </option>
+              <option value="15" data-price="130000">
+                Up to 15 guests — ₦130,000
+              </option>
+              <option value="20" data-price="160000">
+                Up to 20 guests — ₦160,000
+              </option>
+              <option value="unlimited" data-price="200000">
+                Unlimited guests — ₦200,000
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group" id="extra-group" style="display: none">
+            <label>Extra Guests (beyond included)</label>
+            <input
+              type="number"
+              id="f-extra"
+              min="0"
+              value="0"
+              placeholder="0"
+              onchange="calcPrice()"
+            />
+          </div>
+
+          <div class="form-group">
+            <label>In-House Photography (optional)</label>
+            <select id="f-photo" onchange="calcPrice()">
+              <option value="none">No photography needed</option>
+              <option value="iphone" data-price="15000">
+                iPhone — All raw + 5 edited · ₦15,000
+              </option>
+              <option value="camera" data-price="25000">
+                Digital Camera — All raw + 5 edited · ₦25,000
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Additional Notes (optional)</label>
+            <textarea
+              id="f-notes"
+              placeholder="Any special requests or details..."
+            ></textarea>
+          </div>
+
+          <div class="price-bar">
+            <span>Total Amount Due</span>
+            <strong>₦<span id="total-price">0</span></strong>
+          </div>
+
+          <div class="policy-check">
+            <input type="checkbox" id="agree" onchange="toggleNext()" />
+            <label for="agree"
+              >I have read and agree to the
+              <a href="rules.html" target="_blank">Studio Rules & Policies</a>.
+              I understand that my session is only confirmed after full
+              payment.</label
+            >
+          </div>
+
+          <div class="btn-actions">
+            <button
+              class="btn-next"
+              id="btn-to-2"
+              onclick="goToStep2()"
+              disabled
+            >
+              Proceed to Payment &rarr;
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 2: PAYMENT -->
+        <div class="step-panel" id="panel-2">
+          <p class="panel-title">Make Payment</p>
+          <div class="gold-rule"></div>
+          <p class="panel-sub">
+            Transfer the exact amount below to confirm your booking. Once done,
+            click the button to send your booking summary.
+          </p>
+
+          <div class="bank-block">
+            <div class="bank-block-head">
+              <i class="fas fa-building-columns"></i>
+              <span>Bank Transfer Details</span>
+            </div>
+            <div class="bank-block-body">
+              <div class="bank-row">
+                <span class="bank-row-label">Bank</span>
+                <span class="bank-row-val">Keystone Bank</span>
+              </div>
+              <div class="bank-row">
+                <span class="bank-row-label">Account Name</span>
+                <span class="bank-row-val">AbdulRasaq Zainab Ayowumi</span>
+              </div>
+              <div class="bank-row">
+                <span class="bank-row-label">Account Number</span>
+                <span class="bank-row-val acct-num">6031962197</span>
+              </div>
+              <div class="bank-row">
+                <span class="bank-row-label">Amount to Pay</span>
+                <span class="bank-row-val total-due"
+                  >₦<span id="pay-amount">0</span></span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="bank-notice">
+            <i class="fas fa-circle-info"></i>
+            <p>
+              After transferring, click the button below. This will open
+              WhatsApp with your full booking summary and payment confirmation
+              sent directly to us.
+            </p>
+          </div>
+
+          <button class="btn-paid" onclick="confirmPayment()">
+            I Have Made Payment — Send Booking &rarr;
+          </button>
+
+          <div class="btn-actions" style="margin-top: 20px">
+            <button class="btn-back" onclick="goToStep(1)">
+              &larr; Go Back
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 3: CONFIRMED -->
+        <div class="step-panel" id="panel-3">
+          <div class="confirmed-block">
+            <div class="confirmed-icon"><i class="fas fa-check"></i></div>
+            <h2>Booking Sent!</h2>
+            <p class="conf-sub">
+              Your booking summary has been sent to us on WhatsApp. We will
+              confirm your slot once payment is verified. Here is the studio
+              address:
+            </p>
+
+            <div class="address-card">
+              <span class="eyebrow">Studio Address</span>
+              <h3>
+                No 7, Decency House,<br />Megigandi Street, Ita Amodu,<br />Ilorin,
+                Kwara State.
+              </h3>
+              <p>
+                Please arrive at your exact booked time. Late arrivals lose that
+                time — no extensions are given for delays.
+              </p>
+            </div>
+
+            <div class="summary-grid" id="summary-grid"></div>
+
+            <a
+              href="/"
+              class="btn-next"
+              style="display: inline-block; text-decoration: none"
+              >Back to Home</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <div class="logo">
+            <span class="logo-hrm">HRM</span>
+            <span class="logo-name" style="color: rgba(255, 255, 255, 0.5)"
+              >Aesthetic Haven</span
+            >
+          </div>
+          <p class="footer-desc">
+            A cosy space where your brand shines and your content stands out.
+            Ilorin, Nigeria.
+          </p>
+        </div>
+        <div class="fc">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="/#about">About</a></li>
+            <li><a href="/#packages">Packages</a></li>
+            <li><a href="booking.html">Book Now</a></li>
+            <li><a href="rules.html">Policies</a></li>
+          </ul>
+        </div>
+        <div class="fc">
+          <h4>Contact</h4>
+          <p>📞 09062327249</p>
+          <p>📞 07015991635</p>
+          <p style="margin-top: 8px">
+            <a href="https://instagram.com/HRM_aesthetic_haven" target="_blank"
+              >Instagram</a
+            >
+          </p>
+          <p>
+            <a href="https://tiktok.com/@HRM_aesthetic_haven1" target="_blank"
+              >TikTok</a
+            >
+          </p>
+          <p>
+            <a href="https://wa.me/2349062327249" target="_blank">WhatsApp</a>
+          </p>
+        </div>
+      </div>
+      <div class="footer-bot">
+        <p>&copy; 2025 HRM Aesthetic Haven. All rights reserved.</p>
+        <p class="gold">Ilorin · Nigeria</p>
+      </div>
+    </footer>
+
+    <script>
+      /* NAV */
+      (function () {
+        var mb = document.querySelector(".mobile-only-book");
+        function cw() {
+          mb.style.display = window.innerWidth > 960 ? "none" : "";
+        }
+        cw();
+        window.addEventListener("resize", cw);
+      })();
+      var nav = document.getElementById("nav");
+      window.addEventListener("scroll", function () {
+        nav.classList.toggle("scrolled", window.scrollY > 60);
+      });
+      function toggleNav() {
+        document.getElementById("navLinks").classList.toggle("open");
+      }
+      document.querySelectorAll("#navLinks a").forEach(function (a) {
+        a.addEventListener("click", function () {
+          document.getElementById("navLinks").classList.remove("open");
+        });
+      });
+
+      /* PRICING */
+      var prices = {
+        homely: { 1: 20000, 2: 40000, 3: 55000 },
+        pro: { 1: 20000, 2: 40000, 3: 50000 },
+      };
+      var extraRates = { homely: 15000, pro: 10000 };
+
+      function onTypeChange() {
+        var type = document.getElementById("f-type").value;
+        document.getElementById("duration-group").style.display =
+          type === "homely" || type === "pro" ? "flex" : "none";
+        document.getElementById("guests-group").style.display =
+          type === "event" ? "flex" : "none";
+        document.getElementById("extra-group").style.display =
+          type === "homely" || type === "pro" ? "flex" : "none";
+        calcPrice();
+      }
+
+      function calcPrice() {
+        var type = document.getElementById("f-type").value;
+        var dur = document.getElementById("f-duration").value;
+        var photo = document.getElementById("f-photo");
+        var photoPrice =
+          parseInt(
+            photo.options[photo.selectedIndex].getAttribute("data-price"),
+          ) || 0;
+        var total = 0;
+
+        if (type === "event") {
+          var gSel = document.getElementById("f-guests");
+          total =
+            parseInt(
+              gSel.options[gSel.selectedIndex].getAttribute("data-price"),
+            ) || 0;
+        } else if (type === "homely" || type === "pro") {
+          total =
+            dur && prices[type][parseInt(dur)]
+              ? prices[type][parseInt(dur)]
+              : 0;
+          var extra = parseInt(document.getElementById("f-extra").value) || 0;
+          total += extra * (extraRates[type] || 0);
+        }
+        total += photoPrice;
+        document.getElementById("total-price").textContent =
+          total.toLocaleString();
+      }
+
+      function toggleNext() {
+        document.getElementById("btn-to-2").disabled =
+          !document.getElementById("agree").checked;
+      }
+
+      function goToStep2() {
+        var name = document.getElementById("f-name").value.trim();
+        var phone = document.getElementById("f-phone").value.trim();
+        var date = document.getElementById("f-date").value;
+        var time = document.getElementById("f-time").value;
+        var type = document.getElementById("f-type").value;
+        if (!name || !phone || !date || !time || !type) {
+          alert("Please fill in all required fields.");
+          return;
+        }
+        document.getElementById("pay-amount").textContent =
+          document.getElementById("total-price").textContent;
+        goToStep(2);
+      }
+
+      function goToStep(n) {
+        [1, 2, 3].forEach(function (i) {
+          document
+            .getElementById("panel-" + i)
+            .classList.toggle("active", i === n);
+          var tab = document.getElementById("tab-" + i);
+          tab.classList.remove("active", "done");
+          if (i === n) tab.classList.add("active");
+          if (i < n) tab.classList.add("done");
+        });
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function confirmPayment() {
+        var name = document.getElementById("f-name").value.trim();
+        var phone = document.getElementById("f-phone").value.trim();
+        var email = document.getElementById("f-email").value.trim();
+        var date = document.getElementById("f-date").value;
+        var time = document.getElementById("f-time").value;
+        var type = document.getElementById("f-type").value;
+        var dur = document.getElementById("f-duration").value;
+        var photo = document.getElementById("f-photo");
+        var photoTxt = photo.options[photo.selectedIndex].text;
+        var notes = document.getElementById("f-notes").value.trim();
+        var total = document.getElementById("total-price").textContent;
+
+        var typeLabel =
+          {
+            homely: "The Homely Series",
+            pro: "The Pro Series",
+            event: "Event / Celebration",
+          }[type] || type;
+        var durText = dur ? dur + " hour" + (parseInt(dur) > 1 ? "s" : "") : "";
+
+        var guestLine = "";
+        if (type === "event") {
+          var gSel = document.getElementById("f-guests");
+          guestLine = "\nGuest Count: " + gSel.options[gSel.selectedIndex].text;
+        }
+        var extraLine = "";
+        if (type !== "event") {
+          var ex = parseInt(document.getElementById("f-extra").value) || 0;
+          if (ex > 0) extraLine = "\nExtra Guests: " + ex;
+        }
+
+        var msg =
+          "Hello! I have made payment for my studio booking.\n\n" +
+          "NAME: " +
+          name +
+          "\n" +
+          "PHONE: " +
+          phone +
+          "\n" +
+          (email ? "EMAIL: " + email + "\n" : "") +
+          "DATE: " +
+          date +
+          "\n" +
+          "TIME: " +
+          time +
+          "\n" +
+          "SERIES: " +
+          typeLabel +
+          "\n" +
+          (durText ? "DURATION: " + durText + "\n" : "") +
+          guestLine +
+          extraLine +
+          "\n" +
+          "PHOTOGRAPHY: " +
+          photoTxt +
+          "\n" +
+          (notes ? "NOTES: " + notes + "\n" : "") +
+          "\nTOTAL PAID: \u20a6" +
+          total +
+          "\n\nKindly confirm my slot. Thank you!";
+
+        window.open(
+          "https://wa.me/2349062327249?text=" + encodeURIComponent(msg),
+          "_blank",
+        );
+
+        /* Build summary cards */
+        var summaryData = [
+          { label: "Name", val: name },
+          { label: "Date", val: date },
+          { label: "Time", val: time },
+          { label: "Series", val: typeLabel },
+          { label: "Amount Paid", val: "\u20a6" + total },
+        ];
+        if (durText)
+          summaryData.splice(4, 0, { label: "Duration", val: durText });
+        var grid = document.getElementById("summary-grid");
+        grid.innerHTML = summaryData
+          .map(function (s) {
+            return (
+              '<div class="summary-item"><div class="s-label">' +
+              s.label +
+              '</div><div class="s-val">' +
+              s.val +
+              "</div></div>"
+            );
+          })
+          .join("");
+
+        goToStep(3);
+      }
+    </script>
+  </body>
+</html>
